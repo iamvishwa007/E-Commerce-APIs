@@ -2,7 +2,12 @@ package com.e_commerce.e_commerce_api.controller;
 
 
 import com.e_commerce.e_commerce_api.model.Product;
+import com.e_commerce.e_commerce_api.model.User;
 import com.e_commerce.e_commerce_api.service.ProductService;
+import com.e_commerce.e_commerce_api.service.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 	@Autowired
     private ProductService productService;
+	
+	@Autowired
+    private UserService userService;
 	    @PostMapping("/products")
 	    public Product addProduct(@RequestBody Product product) {
 	        return productService.addProduct(product);
@@ -28,4 +36,9 @@ public class AdminController {
 	        return "Product deleted successfully";
 	    }
 
+	    @GetMapping("/allusers")
+	    public List<User> getUsers() {
+	        return userService.getAllUsers();
+	    }
+	    
 }
